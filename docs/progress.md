@@ -1,7 +1,7 @@
 ## 当前状态
-- 已完成：Phase 1-5 全部（Task 1-16）
-- 进行中：无
-- 未开始：Phase 6-7（Task 17-24）
+- 已完成：Phase 1-5 全部 + Phase 6 前 3 个 Task
+- 进行中：Phase 6 React 前端（Task 4 起）
+- 未开始：Phase 7 Docker 部署
 
 ## 完成进度
 
@@ -12,8 +12,23 @@
 | Phase 3: 数据解析器 | Task 9-12 | 全部完成 |
 | Phase 4: 评分引擎 | Task 13-14 | 全部完成 |
 | Phase 5: API 扩展 | Task 15-16 | 全部完成 |
-| Phase 6: React 前端 | Task 17-22 | 未开始 |
+| Phase 6: React 前端 | 10 个子 Task | 进行中（3/10 完成） |
 | Phase 7: Docker 部署 | Task 23-24 | 未开始 |
+
+## Phase 6 子 Task 进度
+
+| # | Task | 状态 |
+|---|------|------|
+| 1 | 后端 Dashboard 聚合端点 | ✅ 完成 |
+| 2 | Vite 项目初始化 + 路由 + Layout | ✅ 完成 |
+| 3 | API 层 + TypeScript 类型定义 | ✅ 完成 |
+| 4 | 共享组件（GradeTag, RadarChart, TrendLine, MonthPicker） | ⬜ 未开始 |
+| 5 | Dashboard 页面 | ⬜ 未开始 |
+| 6 | 员工列表页 | ⬜ 未开始 |
+| 7 | 员工详情页 | ⬜ 未开始 |
+| 8 | 月度报告页 | ⬜ 未开始 |
+| 9 | 系统管理页 | ⬜ 未开始 |
+| 10 | 最终清理 + 集成验证 | ⬜ 未开始 |
 
 ## 关键决策
 - 使用 `bcrypt` 直接调用而非 `passlib.hash.bcrypt`，因为 bcrypt 5.x 移除了 `__about__` 模块导致 passlib 不兼容（Task 4 中发现并解决）
@@ -39,11 +54,19 @@
   - `GET /api/employees/{id}/reports?year_month=` — 月度报告查询
   - `POST /api/employees/{id}/score` — 触发评分（body: `{"year_month": "YYYY-MM"}`）
   - trigger_scoring 端点需要 `session.refresh(report)` 因为 SQLAlchemy commit 后对象脱离
+- **Phase 6 前端技术选型**：
+  - React 18 + TypeScript + Vite + Ant Design 5 + ECharts（echarts-for-react）
+  - 代码英文，界面中文；暂无登录认证（MVP）
+  - Vite proxy `/api` → `localhost:8000`
+  - 新增后端聚合端点：`GET /api/dashboard/summary`、`GET /api/dashboard/rankings`（已加 Literal + regex 输入验证）
+  - 设计 spec：`docs/superpowers/specs/2026-03-28-react-frontend-design.md`
+  - 实施计划：`docs/superpowers/plans/2026-03-28-react-frontend.md`
 
 ## 已知问题
-- 原始设计文档和实施计划文件丢失（`docs/superpowers/specs/` 和 `docs/superpowers/plans/`）
+- 原始设计文档和实施计划文件丢失（`docs/superpowers/specs/` 和 `docs/superpowers/plans/`）— 已在 Phase 6 重建
 - `pytest-httpx` 通过 `uv pip install` 安装，未写入 pyproject.toml（uv add 有权限问题）
 - 部分高级指标暂用占位值：`large_file_reads`（需要 tool_result 数据判断文件大小）、`repeated_queries`（需要 NLP 相似度分析）、`error_recovery_avg_turns`（需要错误模式检测）、`rejected_commands`（需要更精确的命令失败判定）
+- 后端 `_get_sync_session()` 在多个路由文件中重复且未关闭 session（技术债务，待统一处理）
 
 ## Commit 历史
 - `1ca082e` — chore: initialize project structure
@@ -60,7 +83,13 @@
 - `1d6559a` — feat: add scoring persistence layer with upsert semantics
 - `8dbea6b` — feat: add scoring orchestration — bridge ParsedMetrics to scoring engine
 - `8f47f6d` — feat: add score query and report API endpoints
+- `bde450a` — docs: add React frontend design spec (Phase 6)
+- `7ba5256` — docs: add React frontend implementation plan (Phase 6)
+- `b369d88` — feat: add dashboard aggregation API endpoints
+- `9cee333` — fix: add input validation to dashboard endpoints
+- `8c6784b` — feat: initialize Vite React project with routing and layout
+- `245574a` — feat: add TypeScript types and API layer
 
 ## 下一步
-1. Task 17-22: React 前端（5 个核心页面）
-2. Task 23-24: Docker 部署
+1. Phase 6 Task 4-10: 共享组件 → 5 个页面 → 清理验证
+2. Phase 7: Docker 部署
