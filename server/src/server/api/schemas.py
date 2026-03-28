@@ -48,3 +48,24 @@ class MonthlyReportResponse(BaseModel):
 
 class ScoreRequest(BaseModel):
     year_month: str
+
+
+class DashboardSummaryResponse(BaseModel):
+    total_employees: int
+    avg_score: float
+    max_score: float
+    min_score: float
+    grade_distribution: dict[str, int]
+
+
+class RankingEntry(BaseModel):
+    employee_id: int
+    name: str
+    department: str
+    total_score: float
+    grade: str
+
+
+class EmployeeWithScoreResponse(EmployeeResponse):
+    total_score: float | None = None
+    grade: str | None = None
