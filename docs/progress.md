@@ -1,7 +1,7 @@
 ## 当前状态
-- 已完成：Phase 1 全部（Task 1-5）、Phase 2 全部（Task 6-8）、Phase 3 全部（数据解析器）、Phase 4 全部（评分引擎）
+- 已完成：Phase 1-5 全部（Task 1-16）
 - 进行中：无
-- 未开始：Phase 5-7（Task 15-24）
+- 未开始：Phase 6-7（Task 17-24）
 
 ## 完成进度
 
@@ -11,7 +11,7 @@
 | Phase 2: 采集 Agent | Task 6-8 | 全部完成 |
 | Phase 3: 数据解析器 | Task 9-12 | 全部完成 |
 | Phase 4: 评分引擎 | Task 13-14 | 全部完成 |
-| Phase 5: API 扩展 | Task 15-16 | 未开始 |
+| Phase 5: API 扩展 | Task 15-16 | 全部完成 |
 | Phase 6: React 前端 | Task 17-22 | 未开始 |
 | Phase 7: Docker 部署 | Task 23-24 | 未开始 |
 
@@ -34,6 +34,11 @@
   - 等级：S(>=90), A(>=75), B(>=60), C(>=40), D(<40)
   - DB 层使用 upsert 语义（先删后插），cognition_score 字段映射 configuration 类别
   - `score_employee_month()` 是顶层入口：读 ParsedMetrics → 转 MonthlyMetrics → score_metrics → persist
+- **API 扩展**：3 个新端点
+  - `GET /api/employees/{id}/scores?year_month=` — 维度评分查询
+  - `GET /api/employees/{id}/reports?year_month=` — 月度报告查询
+  - `POST /api/employees/{id}/score` — 触发评分（body: `{"year_month": "YYYY-MM"}`）
+  - trigger_scoring 端点需要 `session.refresh(report)` 因为 SQLAlchemy commit 后对象脱离
 
 ## 已知问题
 - 原始设计文档和实施计划文件丢失（`docs/superpowers/specs/` 和 `docs/superpowers/plans/`）
@@ -54,8 +59,8 @@
 - `88805bb` — feat: add scoring engine with category aggregation and grading
 - `1d6559a` — feat: add scoring persistence layer with upsert semantics
 - `8dbea6b` — feat: add scoring orchestration — bridge ParsedMetrics to scoring engine
+- `8f47f6d` — feat: add score query and report API endpoints
 
 ## 下一步
-1. Task 15-16: API 扩展（评分查询 + 月度报告 API）
-2. Task 17-22: React 前端（5 个核心页面）
-3. Task 23-24: Docker 部署
+1. Task 17-22: React 前端（5 个核心页面）
+2. Task 23-24: Docker 部署
