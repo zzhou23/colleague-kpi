@@ -1,3 +1,5 @@
+from typing import Literal
+
 from fastapi import APIRouter, Query
 from sqlalchemy import create_engine, select, func
 from sqlalchemy.orm import Session
@@ -18,7 +20,7 @@ def _get_sync_session() -> Session:
 
 @router.get("/dashboard/summary", response_model=DashboardSummaryResponse)
 async def dashboard_summary(
-    year_month: str = Query(..., description="Format: YYYY-MM"),
+    year_month: str = Query(..., pattern=r"^\d{4}-\d{2}$", description="Format: YYYY-MM"),
 ) -> DashboardSummaryResponse:
     session = _get_sync_session()
     total_employees = session.scalar(select(func.count(Employee.id)))
@@ -57,8 +59,8 @@ async def dashboard_summary(
 
 @router.get("/dashboard/rankings", response_model=list[RankingEntry])
 async def dashboard_rankings(
-    year_month: str = Query(..., description="Format: YYYY-MM"),
-    order: str = Query("top", description="top or bottom"),
+    year_month: str = Query(..., pattern=r"^\d{4}-\d{2}$", description="Format: YYYY-MM"),
+    order: Literal["top", "bottom"] = Query("top", description="top or bottom"),
     limit: int = Query(10, ge=1, le=100),
 ) -> list[RankingEntry]:
     session = _get_sync_session()

@@ -65,7 +65,3 @@ class RankingEntry(BaseModel):
     total_score: float
     grade: str
 
-
-class EmployeeWithScoreResponse(EmployeeResponse):
-    total_score: float | None = None
-    grade: str | None = None
