@@ -1,6 +1,6 @@
 ## 当前状态
-- 已完成：Phase 1 全部（Task 1-5）、Task 6（Agent Config + Sanitizer）、Task 7（Agent Collector + Uploader）
-- 进行中：Task 8（Agent Scheduler Entry Point）
+- 已完成：Phase 1 全部（Task 1-5）、Phase 2 全部（Task 6-8）
+- 进行中：Phase 3（数据解析器）
 - 未开始：Task 9-24
 
 ## 完成进度
@@ -8,7 +8,7 @@
 | Phase | Tasks | 状态 |
 |-------|-------|------|
 | Phase 1: 项目骨架 & Server 核心 | Task 1-5 | 全部完成 |
-| Phase 2: 采集 Agent | Task 6-7 完成, Task 8 未开始 | 进行中 |
+| Phase 2: 采集 Agent | Task 6-8 | 全部完成 |
 | Phase 3: 数据解析器 | Task 9-12 | 未开始 |
 | Phase 4: 评分引擎 | Task 13-14 | 未开始 |
 | Phase 5: API 扩展 | Task 15-16 | 未开始 |
@@ -34,7 +34,7 @@
 - `8c16163` — docs: add progress tracking
 
 ## 下一步
-1. Task 8: Agent Scheduler Entry Point（APScheduler 定时任务，串联 collector + uploader）
-2. Task 9-12: 数据解析器（解析上传的 claude 数据，提取 metrics）
-3. Task 13-14: 评分引擎
-4. 继续按 plan 顺序推进 Task 15-24
+1. Task 9-12: 数据解析器（解析上传的 claude 数据，提取 ParsedMetrics）
+2. Task 13-14: 评分引擎（从 metrics 计算维度评分和月度报告）
+3. Task 15-16: API 扩展（报告查询 API）
+4. 继续按 plan 顺序推进 Task 17-24
