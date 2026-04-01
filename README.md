@@ -363,7 +363,7 @@ ai-team-score/
 ### Docker 部署（推荐）
 
 ```bash
-git clone https://github.com/zzhou23/ai-team-score.git
+git clone https://github.com/zzhou23/colleague-kpi.git
 cd ai-team-score
 cp .env.example .env  # 编辑配置
 docker compose up -d
