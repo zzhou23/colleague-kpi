@@ -1,6 +1,6 @@
 <div align="center">
 
-# AI Team Score
+# Colleague KPI
 
 > *"你搞大模型的说大模型要取代所有人，我信了。现在 API Key 充了、Max Plan 开了、Claude Code 装了，你告诉我他们还在手写 for 循环？那我取代他们不就行了？"*
 
@@ -47,7 +47,7 @@ S/A/B/C/D 五档评级，谁是 AI 原住民、谁在裸泳，一目了然
 
 ## 为什么需要这个？
 
-| 老板的痛 | 残酷的现状 | AI Team Score 的解法 |
+| 老板的痛 | 残酷的现状 | Colleague KPI 的解法 |
 |----------|-----------|---------------------|
 | API Key 充了没人用 | 花了钱开 Plan，用量全靠自觉 | 每日自动采集，用没用一目了然 |
 | 不知道谁在"假装用" | 有人开着 Claude 闲聊凑 token 数 | 区分有效使用和无效空转，识别刷量行为 |
@@ -312,7 +312,7 @@ monthly_reports   -- 月度综合报告（五类得分 + 总分 + 等级）
 ## 项目结构
 
 ```
-ai-team-score/
+colleague-kpi/
 ├── agent/                    # 采集 Agent（部署到员工机器）
 │   ├── src/agent/
 │   │   ├── collector.py      # 打包 ~/.claude（自动脱敏）
@@ -364,7 +364,7 @@ ai-team-score/
 
 ```bash
 git clone https://github.com/zzhou23/colleague-kpi.git
-cd ai-team-score
+cd colleague-kpi
 cp .env.example .env  # 编辑配置
 docker compose up -d
 ```
