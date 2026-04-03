@@ -1,6 +1,6 @@
 ## 当前状态
-- 已完成：Phase 1-6 全部
-- 未开始：Phase 7 Docker 部署
+- 已完成：Phase 1-7 全部
+- 项目功能开发完毕
 
 ## 完成进度
 
@@ -12,7 +12,7 @@
 | Phase 4: 评分引擎 | Task 13-14 | 全部完成 |
 | Phase 5: API 扩展 | Task 15-16 | 全部完成 |
 | Phase 6: React 前端 | 10 个子 Task | 全部完成 |
-| Phase 7: Docker 部署 | Task 23-24 | 未开始 |
+| Phase 7: Docker 部署 | Task 23-24 | 全部完成 |
 
 ## Phase 6 子 Task 进度
 
@@ -60,6 +60,11 @@
   - 新增后端聚合端点：`GET /api/dashboard/summary`、`GET /api/dashboard/rankings`（已加 Literal + regex 输入验证）
   - 设计 spec：`docs/superpowers/specs/2026-03-28-react-frontend-design.md`
   - 实施计划：`docs/superpowers/plans/2026-03-28-react-frontend.md`
+- **Phase 7 Docker 部署**：
+  - 三容器架构：PostgreSQL 16 + FastAPI (uv) + nginx (Vite build)
+  - nginx 反向代理 `/api/` → `server:8000`，SPA fallback `try_files → /index.html`
+  - 环境变量前缀 `APR_`，通过 `.env` 文件注入
+  - PostgreSQL 使用 named volume `pgdata` 持久化，uploads 使用 named volume
 
 ## 已知问题
 - 原始设计文档和实施计划文件丢失（`docs/superpowers/specs/` 和 `docs/superpowers/plans/`）— 已在 Phase 6 重建
@@ -90,4 +95,5 @@
 - `245574a` — feat: add TypeScript types and API layer
 
 ## 下一步
-1. Phase 7: Docker 部署
+- 项目功能开发已全部完成
+- 可选后续：登录认证、Alembic 迁移、CI/CD 流水线、Agent 容器化
