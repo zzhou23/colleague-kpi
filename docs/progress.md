@@ -1,6 +1,5 @@
 ## 当前状态
-- 已完成：Phase 1-5 全部 + Phase 6 前 3 个 Task
-- 进行中：Phase 6 React 前端（Task 4 起）
+- 已完成：Phase 1-6 全部
 - 未开始：Phase 7 Docker 部署
 
 ## 完成进度
@@ -12,7 +11,7 @@
 | Phase 3: 数据解析器 | Task 9-12 | 全部完成 |
 | Phase 4: 评分引擎 | Task 13-14 | 全部完成 |
 | Phase 5: API 扩展 | Task 15-16 | 全部完成 |
-| Phase 6: React 前端 | 10 个子 Task | 进行中（3/10 完成） |
+| Phase 6: React 前端 | 10 个子 Task | 全部完成 |
 | Phase 7: Docker 部署 | Task 23-24 | 未开始 |
 
 ## Phase 6 子 Task 进度
@@ -22,13 +21,13 @@
 | 1 | 后端 Dashboard 聚合端点 | ✅ 完成 |
 | 2 | Vite 项目初始化 + 路由 + Layout | ✅ 完成 |
 | 3 | API 层 + TypeScript 类型定义 | ✅ 完成 |
-| 4 | 共享组件（GradeTag, RadarChart, TrendLine, MonthPicker） | ⬜ 未开始 |
-| 5 | Dashboard 页面 | ⬜ 未开始 |
-| 6 | 员工列表页 | ⬜ 未开始 |
-| 7 | 员工详情页 | ⬜ 未开始 |
-| 8 | 月度报告页 | ⬜ 未开始 |
-| 9 | 系统管理页 | ⬜ 未开始 |
-| 10 | 最终清理 + 集成验证 | ⬜ 未开始 |
+| 4 | 共享组件（GradeTag, RadarChart, TrendLine, MonthPicker） | ✅ 完成 |
+| 5 | Dashboard 页面 | ✅ 完成 |
+| 6 | 员工列表页 | ✅ 完成 |
+| 7 | 员工详情页 | ✅ 完成 |
+| 8 | 月度报告页 | ✅ 完成 |
+| 9 | 系统管理页 | ✅ 完成 |
+| 10 | 最终清理 + 集成验证 | ✅ 完成 |
 
 ## 关键决策
 - 使用 `bcrypt` 直接调用而非 `passlib.hash.bcrypt`，因为 bcrypt 5.x 移除了 `__about__` 模块导致 passlib 不兼容（Task 4 中发现并解决）
@@ -91,5 +90,4 @@
 - `245574a` — feat: add TypeScript types and API layer
 
 ## 下一步
-1. Phase 6 Task 4-10: 共享组件 → 5 个页面 → 清理验证
-2. Phase 7: Docker 部署
+1. Phase 7: Docker 部署
