@@ -5,7 +5,7 @@
 > *"你搞大模型的说大模型要取代所有人，我信了。现在 API Key 充了、Max Plan 开了、Claude Code 装了，你告诉我他们还在手写 for 循环？那我取代他们不就行了？"*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://python.org)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18-61dafb.svg)](https://react.dev)
 
@@ -349,10 +349,12 @@ colleague-kpi/
 ├── web/                      # React 管理后台
 │   └── src/
 │       ├── pages/            # 5 个核心页面
-│       ├── components/       # 图表组件
-│       └── services/         # API 调用层
+│       ├── components/       # 共享图表组件（GradeTag, RadarChart, TrendLine, MonthPicker）
+│       ├── api/              # Axios API 调用层
+│       └── types/            # TypeScript 类型定义
 │
-├── docker-compose.yml        # 一键部署
+├── docker-compose.yml        # 一键部署（PostgreSQL + FastAPI + nginx）
+├── .env.example              # 环境变量模板
 └── docs/                     # 设计文档 + 实施计划
 ```
 
@@ -393,12 +395,12 @@ python -m agent --once
 ## 路线图
 
 - [x] Phase 1：项目骨架 + Server 核心（Config、DB Models、FastAPI、Employee CRUD）
-- [ ] Phase 2：采集 Agent（Sanitizer、Collector、Uploader、Scheduler）
-- [ ] Phase 3：数据解析器（6 大 Parser + Orchestrator）
-- [ ] Phase 4：评分引擎（35+ 维度 + 加权聚合 + 等级划分）
-- [ ] Phase 5：API 扩展（Scores、Reports、Dashboard）
-- [ ] Phase 6：React 前端（5 个核心页面 + 图表组件）
-- [ ] Phase 7：Docker 一键部署
+- [x] Phase 2：采集 Agent（Sanitizer、Collector、Uploader、Scheduler）
+- [x] Phase 3：数据解析器（4 大 Parser + Orchestrator）
+- [x] Phase 4：评分引擎（25 维度 × 5 类别 + 加权聚合 + S/A/B/C/D 等级）
+- [x] Phase 5：API 扩展（Scores、Reports、Dashboard 聚合端点）
+- [x] Phase 6：React 前端（5 个核心页面 + 共享图表组件）
+- [x] Phase 7：Docker 一键部署（PostgreSQL + FastAPI + nginx）
 - [ ] Phase 8：支持更多 AI 工具（GitHub Copilot、Cursor、Windsurf...）
 - [ ] Phase 9：维度权重可配置化
 - [ ] Phase 10：对接企业 HR/OA 系统 API
